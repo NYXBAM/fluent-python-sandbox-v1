@@ -51,3 +51,28 @@ obj.over # -> Overriding.__get__(<Overriding object, <Managed object, <class Man
 obj.__dict__['over'] = 8
 print(vars(obj)) # {'over': 8}
 obj.over # -> Overriding.__get__(<Overriding object, <Managed object, <class Managed>)
+
+print(obj.over_no_get) # > <__main__.OverridingNoGet object at 0x10328bd60>
+print(Managed.over_no_get) # <__main__.OverridingNoGet object at 0x10328bd60>
+obj.over_no_get = 7 # -> OverridingNoGet.__set__(<OverridingNoGet object, <Managed object, 7)
+print(obj.over_no_get) # <__main__.OverridingNoGet object at 0x10328bd60>
+obj.__dict__['over_no_get'] = 9
+print(obj.over_no_get) # 9
+obj.over_no_get = 7 # -> OverridingNoGet.__set__(<OverridingNoGet object, <Managed object, 7)
+print(obj.over_no_get) # 9
+
+
+obj = Managed()
+obj.non_over # -> NonOverriding.__get__(<NonOverriding object, <Managed object, <class Managed>)
+obj.non_over = 7
+print(obj.non_over) # 7
+Managed.non_over # -> NonOverriding.__get__(<NonOverriding object, None, <class Managed>)
+del obj.non_over
+obj.non_over # -> NonOverriding.__get__(<NonOverriding object, <Managed object, <class Managed>)
+
+obj = Managed()
+Managed.over = 1
+Managed.over_no_get =2 
+Managed.non_over = 3
+
+print(obj.over, obj.over_no_get, obj.non_over) # 1 2 3 
