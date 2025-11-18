@@ -76,3 +76,10 @@ Managed.over_no_get =2
 Managed.non_over = 3
 
 print(obj.over, obj.over_no_get, obj.non_over) # 1 2 3 
+
+
+obj = Managed()
+print(obj.spam) # <bound method Managed.spam of <__main__.Managed object at 0x10217bd30>>
+print(Managed.spam) # <function Managed.spam at 0x1044d6a70>
+obj.spam = 7
+print(obj.spam) # 7
