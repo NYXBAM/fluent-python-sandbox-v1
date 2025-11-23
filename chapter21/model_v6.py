@@ -29,6 +29,10 @@ class Validated(abc.ABC, AutoStorage):
     def validate(self, instance, value):
         """Return validated value or raise ValueError"""
         
+# class Validated:
+#     """Using in Python 3.6+ """
+#     def __set_name__(self, owner, name):
+#         self.storage_name = name
         
 class Quantity(Validated):
     def validate(self, instance, value):
